@@ -21,6 +21,16 @@ export class MenuService {
     headers.append('Content-Type', 'application/json');
     return this._http.post('http://localhost:3000/menu/add', item, {headers: headers}).map(res => res.json());
   }
+  editItem(item) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.post('http://localhost:3000/menu/edit', item, {headers: headers}).map(res => res.json());
+  }
+  deleteItem(item) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.post('http://localhost:3000/menu/delete', item, {headers: headers}).map(res => res.json());
+  }
   getMenu() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');

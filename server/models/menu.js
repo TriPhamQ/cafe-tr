@@ -41,3 +41,34 @@ module.exports.addItem = function (newMenuItem, callback) {
     callback(null, item);
   });
 };
+
+module.exports.editItem = function (menuItem, callback) {
+  Menu.findOne({_id: menuItem._id}, (err, item) => {
+    if (err) {
+      callback(err, null);
+    }
+    if (menuItem.image) {
+      item.image = menuItem.image;
+    }
+    if (menuItem.name) {
+      item.name = menuItem.name;
+    }
+    if (menuItem.description) {
+      item.description = menuItem.description;
+    }
+    if (menuItem.price) {
+      item.price = menuItem.price;
+    }
+    item.save();
+    callback(null, item);
+  });
+};
+
+module.exports.deleteItem = function (menuItem, callback) {
+  Menu.remove(menuItem, (err, menuItem) => {
+    if (err) {
+      callback(err, null);
+    }
+    callback(null, menuItem);
+  });
+};

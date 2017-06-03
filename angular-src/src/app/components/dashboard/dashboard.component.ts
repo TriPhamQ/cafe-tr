@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   price: number;
   description: string;
   menu: Object;
+  idEdit: string;
   imageEdit: string;
   nameEdit: string;
   priceEdit: number;
@@ -89,7 +90,7 @@ export class DashboardComponent implements OnInit {
     };
 
     // Validate User
-    if (!this.validateService.validateNewMenuItem(item)) {
+    if (!this.validateService.validateMenuItem(item)) {
       this.flashMessage.show('Please fill in all fields', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     };
@@ -101,6 +102,7 @@ export class DashboardComponent implements OnInit {
         this.image = null;
         this.price = null;
         this.description = null;
+        this.isEdit = false;
         this.menuService.getMenu().subscribe(data => {
           this.menu = data.menu;
         }, err => {
@@ -120,6 +122,7 @@ export class DashboardComponent implements OnInit {
     this.imageEdit = item.image;
     this.priceEdit = item.price;
     this.descriptionEdit = item.description;
+    this.idEdit = item._id;
   }
 
   onEditMenuItemSubmit() {
@@ -127,7 +130,62 @@ export class DashboardComponent implements OnInit {
       name: this.nameEdit,
       image: this.imageEdit,
       price: this.priceEdit,
-      description: this.descriptionEdit
+      description: this.descriptionEdit,
+      _id: this.idEdit
     };
+
+    // Validate User
+    if (!this.validateService.validateMenuItem(item)) {
+      this.flashMessage.show('Please fill in all fields', {cssClass: 'alert-danger', timeout: 3000});
+      return false;
+    };
+
+    this.menuService.editItem(item).subscribe(data => {
+      if (data.success) {
+        this.flashMessage.show('Item has been edited', {cssClass: 'alert-success', timeout: 3000});
+        this.isEdit = false;
+        this.nameEdit = null;
+        this.imageEdit = null;
+        this.priceEdit = null;
+        this.descriptionEdit = null;
+        this.image = null;
+        this.menuService.getMenu().subscribe(data => {
+          this.menu = data.menu;
+        }, err => {
+          console.log(err);
+          return false;
+        });
+      }
+      else {
+        this.flashMessage.show(data.message, {cssClass: 'alert-danger', timeout: 3000});
+      }
+    })
+  }
+
+  onCancelEdit() {
+    this.isEdit = false;
+  }
+
+  onDeleteMenuItem(item) {
+    this.menuService.deleteItem(item).subscribe(data => {
+      if (data.success) {
+        this.flashMessage.show('Item has been deleted', {cssClass: 'alert-success', timeout: 3000});
+        this.isEdit = false;
+        this.nameEdit = null;
+        this.imageEdit = null;
+        this.priceEdit = null;
+        this.descriptionEdit = null;
+        this.image = null;
+        this.menuService.getMenu().subscribe(data => {
+          this.menu = data.menu;
+        }, err => {
+          console.log(err);
+          return false;
+        });
+      }
+      else {
+        this.flashMessage.show(data.message, {cssClass: 'alert-danger', timeout: 3000});
+      }
+    })
   }
 }
