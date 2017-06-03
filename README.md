@@ -36,7 +36,7 @@ Run `npm test` at root/angular-src to execute the unit tests via [Karma](https:/
 ## Running end-to-end tests
 
 Run `npm e2e` at root/angular-src to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+Before running the tests make sure you are serving the app via `npm start`.
 
 ## Further help
 
