@@ -27,7 +27,12 @@ export class DashboardComponent implements OnInit {
   
   private uploader:FileUploader = new FileUploader({url:'/images/upload'});
 
-  constructor(private router: Router, private validateService: ValidateService, private flashMessage: FlashMessagesService, private menuService: MenuService) {
+  constructor(
+    private router: Router, 
+    private validateService: ValidateService, 
+    private flashMessage: FlashMessagesService, 
+    private menuService: MenuService
+  ) {
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       this.menuService.getImages().subscribe(data => {
         this.images = data.images;
@@ -53,11 +58,13 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  // Select image in image library for create/edit item.
   onSelectImage(image) {
     this.image = image.path;
     this.imageEdit = image.path;
   }
 
+  // Delete image in image library.
   onDeleteImage(image) {
     this.menuService.deleteImage(image).subscribe(data => {
       if (data.success) {
@@ -81,6 +88,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  // Create new menu item.
   onNewMenuItemSubmit() {
     const item = {
       name: this.name,
@@ -89,7 +97,7 @@ export class DashboardComponent implements OnInit {
       description: this.description
     };
 
-    // Validate User
+    // Validate User.
     if (!this.validateService.validateMenuItem(item)) {
       this.flashMessage.show('Please fill in all fields', {cssClass: 'alert-danger', timeout: 3000});
       return false;
@@ -116,6 +124,7 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  // Pass menu item infos that to be edit.
   onSelectMenuItem(item) {
     this.isEdit = true;
     this.nameEdit = item.name;
@@ -125,6 +134,7 @@ export class DashboardComponent implements OnInit {
     this.idEdit = item._id;
   }
 
+  // Edit menu item.
   onEditMenuItemSubmit() {
     const item = {
       name: this.nameEdit,
@@ -134,7 +144,7 @@ export class DashboardComponent implements OnInit {
       _id: this.idEdit
     };
 
-    // Validate User
+    // Validate User.
     if (!this.validateService.validateMenuItem(item)) {
       this.flashMessage.show('Please fill in all fields', {cssClass: 'alert-danger', timeout: 3000});
       return false;
@@ -162,10 +172,12 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  // Cancel edit menu item.
   onCancelEdit() {
     this.isEdit = false;
   }
 
+  // Delete menu item.
   onDeleteMenuItem(item) {
     this.menuService.deleteItem(item).subscribe(data => {
       if (data.success) {
@@ -188,4 +200,5 @@ export class DashboardComponent implements OnInit {
       }
     })
   }
+  
 }
