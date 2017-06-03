@@ -3,20 +3,20 @@
   <div class="logo"></div>
   <div class="fore-img"></div>
 </header>
-<section class="content">
+<section class="container content">
   <article>
-    <h1>Unique Style</h1>
+    <h1>Why Pick Us?</h1>
     <hr>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
     <hr>
-    <div class="clothes-pics">
+    <div class="home-items-group">
       <div class="row img-row">
-        <figure *ngFor="let item of menu" class="col-md-4"><img src="http://localhost:3000/{{item.image}}" style="width: 100%; height: 200px;">
-          <figcaption>{{item.name}} - <strong>${{item.price}}</strong></figcaption>
+        <figure *ngFor="let item of menu" class="col-md-4"><img src="http://localhost:3000/{{item.image}}" style="width: 100%; height: auto">
+          <figcaption>{{item.name}} - <strong>${{item.price}}</strong><br><div class="item-desc">{{item.description}}</div></figcaption>
         </figure>
       </div>
     </div>
-    <h1>Fine Tayloring</h1>
+    <h1>Unique</h1>
     <hr>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
     <hr>
@@ -25,7 +25,7 @@
         <div class="promo-text">Toad Specials<strong><span>from</span> $99</strong><a href="" class="window-cta">Shop Now</a></div>
       </div>
     </div>
-    <h1>Rich History</h1>
+    <h1>We Offer</h1>
     <hr>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
     <hr>
