@@ -1,11 +1,11 @@
 # Cafe TR
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.4.
+This project was cloned from [angular-4-quickstart-boilerplate](https://github.com/TriPhamQ/angular-4-quickstart-boilerplate) that was built on [Angular CLI](https://github.com/angular/angular-cli) version 1.0.4.
 
 ## Set up
 
-git clone https://github.com/TriPhamQ/cafe-tr.git.
-cd angular-4-quickstart-boilerplate.
+git clone https://github.com/TriPhamQ/cafe-tr.git {{project_name}}.
+cd {{project_name}}.
 npm install.
 cd angular-src.
 npm install.
