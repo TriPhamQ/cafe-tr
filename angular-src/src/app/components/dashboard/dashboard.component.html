@@ -1,0 +1,146 @@
+<div class="container">
+    <h2 class="page-header">Dashboard</h2>
+    <p>Welcome to your dashboard</p>
+    <div class="row" *ngIf="images">
+        <div class="col-xs-4" *ngFor="let image of images">
+            <img class="dashboard-images-list" src="http://localhost:3000/{{image.path}}" alt="" (click)="onSelectImage(image)">
+            <br>
+            <button class="btn btn-success btn-xs" (click)="onDeleteImage(image)">Delete</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <form>
+                <div class="form-group">
+                    <label for="single">Single</label>
+                    <input type="file" class="form-control" name="single" ng2FileSelect [uploader]="uploader" />
+                    <div class="form-group">
+                        <label for="multiple">Multiple</label>
+                        <input type="file" class="form-control" name="multiple" ng2FileSelect [uploader]="uploader" multiple  />
+                    </div>                                  
+                </div>            
+            </form>
+        </div>
+        <div class="col-md-8">
+            <h3>File Images to libary</h3>
+            Queue length: {{ uploader?.queue?.length }}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th width="50%">Name</th>
+                    <th>Size</th>
+                    <th>Progress</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of uploader.queue">
+                    <td><strong>{{ item.file.name }}</strong></td>
+                    <td nowrap>{{ item.file.size/1024/1024 | number:'.2' }} MB</td>
+                    <td>
+                        <div class="progress" style="margin-bottom: 0;">
+                            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                        <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                    </td>
+                    <td nowrap>
+                        <button type="button" class="btn btn-success btn-xs"
+                                (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                            <span class="glyphicon glyphicon-upload"></span> Upload
+                        </button>
+                        <button type="button" class="btn btn-warning btn-xs"
+                                (click)="item.cancel()" [disabled]="!item.isUploading">
+                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                        </button>
+                        <button type="button" class="btn btn-danger btn-xs"
+                                (click)="item.remove()">
+                            <span class="glyphicon glyphicon-trash"></span> Remove
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div>
+                <div>
+                    Queue progress:
+                    <div class="progress" style="">
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-success btn-s"
+                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                    <span class="glyphicon glyphicon-upload"></span> Upload all
+                </button>
+                <button type="button" class="btn btn-warning btn-s"
+                        (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                </button>
+                <button type="button" class="btn btn-danger btn-s"
+                        (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                    <span class="glyphicon glyphicon-trash"></span> Remove all
+                </button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-9">
+            <h1>Menu Items</h1>
+            <div class="row" *ngFor="let item of menu" (click)="onSelectMenuItem(item)">
+                <div class="col-xs-4">
+                    <img src="http://localhost:3000/{{item.image}}" alt="" *ngIf="item.image">
+                </div>
+                <div class="col-xs-8">
+                    <h1>{{item.name}}</h1>
+                    <h2>{{item.price}}</h2>
+                    <p>{{item.description}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h1>Add New Item</h1>
+            <img src="http://localhost:3000/{{image}}" alt="" *ngIf="image">
+            <form (submit)="onNewMenuItemSubmit()">
+                <div class="form-group">
+                    <label for="">Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="">Price</label>
+                    <input type="number" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" class="form-control" [(ngModel)]="price" name="price" required>
+                </div>
+                <div class="form-group">
+                    <label for="">Description</label>
+                    <textarea style="width: 100%; height: 200px; resize: none;" [(ngModel)]="description" name="description" required></textarea>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="image" name="image" hidden>
+                <button class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="row" *ngIf="isEdit">
+        <h1>Edit Item</h1>
+        <img src="http://localhost:3000/{{imageEdit}}" alt="" *ngIf="imageEdit">
+        <form (submit)="onEditMenuItemSubmit()">
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" class="form-control" [(ngModel)]="nameEdit" name="nameEdit" required>
+            </div>
+            <div class="form-group">
+                <label for="">Price</label>
+                <input type="number" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" class="form-control" [(ngModel)]="priceEdit" name="priceEdit" required>
+            </div>
+            <div class="form-group">
+                <label for="">Description</label>
+                <textarea style="width: 100%; height: 200px; resize: none;" [(ngModel)]="descriptionEdit" name="descriptionEdit" required></textarea>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="imageEdit" name="imageEdit" hidden>
+            <button class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

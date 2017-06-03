@@ -1,0 +1,50 @@
+<header class="img-box">
+  <div class="back-img"></div>
+  <div class="logo"></div>
+  <div class="fore-img"></div>
+</header>
+<section class="content">
+  <article>
+    <h1>Unique Style</h1>
+    <hr>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
+    <hr>
+    <div class="clothes-pics">
+      <div class="row img-row">
+        <figure *ngFor="let item of menu" class="col-md-4"><img src="http://localhost:3000/{{item.image}}" style="width: 100%; height: 200px;">
+          <figcaption>{{item.name}} - <strong>${{item.price}}</strong></figcaption>
+        </figure>
+      </div>
+    </div>
+    <h1>Fine Tayloring</h1>
+    <hr>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
+    <hr>
+    <div class="large-window">
+      <div class="window-tint">
+        <div class="promo-text">Toad Specials<strong><span>from</span> $99</strong><a href="" class="window-cta">Shop Now</a></div>
+      </div>
+    </div>
+    <h1>Rich History</h1>
+    <hr>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
+    <hr>
+    <div class="blog-posts row">
+      <div class="post col-md-4 post-1">
+        <h5>Post Title</h5><img src="assets/images/posts/one.jpg">
+        <p>Incididunt ut labore et dolore magna.</p>
+        <p><a href="" class="button">Read More</a></p>
+      </div>
+      <div class="post col-md-4 post-2">
+        <h5>Post Title</h5><img src="assets/images/posts/two.jpg">
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p><a href="" class="button">Read More</a></p>
+      </div>
+      <div class="post col-md-4 post-3">
+        <h5>Post Title</h5><img src="assets/images/posts/three.jpg">
+        <p>Duis aute irure dolor in reprehenderit.</p>
+        <p><a href="" class="button">Read More</a></p>
+      </div>
+    </div>
+  </article>
+</section>
