@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
   descriptionEdit: string;
   isEdit: boolean;
   
-  private uploader:FileUploader = new FileUploader({url:'http://localhost:3000/images/upload'});
+  private uploader:FileUploader = new FileUploader({url:'/images/upload'});
 
   constructor(private router: Router, private validateService: ValidateService, private flashMessage: FlashMessagesService, private menuService: MenuService) {
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {

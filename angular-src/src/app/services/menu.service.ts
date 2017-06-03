@@ -9,31 +9,31 @@ export class MenuService {
   getImages() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http.get('http://localhost:3000/images/getAll', {headers: headers}).map(res => res.json());
+    return this._http.get('/images/getAll', {headers: headers}).map(res => res.json());
   }
   deleteImage(img) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http.put('http://localhost:3000/images/delete', img, {headers: headers}).map(res => res.json());
+    return this._http.put('/images/delete', img, {headers: headers}).map(res => res.json());
   }
   addItem(item) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http.post('http://localhost:3000/menu/add', item, {headers: headers}).map(res => res.json());
+    return this._http.post('/menu/add', item, {headers: headers}).map(res => res.json());
   }
   editItem(item) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http.post('http://localhost:3000/menu/edit', item, {headers: headers}).map(res => res.json());
+    return this._http.post('/menu/edit', item, {headers: headers}).map(res => res.json());
   }
   deleteItem(item) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http.post('http://localhost:3000/menu/delete', item, {headers: headers}).map(res => res.json());
+    return this._http.put('/menu/delete', item, {headers: headers}).map(res => res.json());
   }
   getMenu() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http.get('http://localhost:3000/menu/getAll', {headers: headers}).map(res => res.json());
+    return this._http.get('/menu/getAll', {headers: headers}).map(res => res.json());
   }
 }

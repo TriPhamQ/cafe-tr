@@ -42,7 +42,7 @@ router.post('/edit', (req, res) => {
 });
 
 // Delete menu item
-router.post('/delete', (req, res) => {
+router.put('/delete', (req, res) => {
   Menu.deleteItem(req.body, (err, item) => {
     if (err) {
       res.json({
