@@ -1,6 +1,6 @@
 # Cafe TR
 
-This project was cloned from [angular-4-quickstart-boilerplate](https://github.com/TriPhamQ/angular-4-quickstart-boilerplate) that was built on [Angular CLI](https://github.com/angular/angular-cli) version 1.0.4.
+This project was created from [angular-4-quickstart-boilerplate](https://github.com/TriPhamQ/angular-4-quickstart-boilerplate) that was built on [Angular CLI](https://github.com/angular/angular-cli) version 1.0.4.
 
 ## Set up
 
